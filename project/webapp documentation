@@ -1,0 +1,41 @@
+# React Customer Management App Documentation
+
+The React Customer Management App is a web application that allows users to manage customer information, including adding, updating, and deleting customer records. The application communicates with a backend API to perform these operations and provides a user-friendly interface for interacting with customer data.
+
+## Components
+
+1. **App Component**: The main component that renders the entire application. It manages the state of customers, the edit row, and the open form state. It also contains the logic to fetch customers from the backend API and handles adding, updating, and deleting customers.
+
+2. **API Module**: The API module provides methods to interact with the backend API using Axios for making HTTP requests.
+
+3. **Table Component**: Renders the table of customers with their information and provides buttons to edit and delete each customer.
+
+4. **Form Component**: A form for adding a new customer or editing an existing customer. It allows users to enter the name, address, and mobile number of the customer.
+
+## State Management
+
+The application uses React's built-in `useState` hook for state management. The main state variables are:
+
+- `customers`: An array that stores the list of customers fetched from the backend API. It is initialized as an empty array and updated when customers are added, updated, or deleted.
+
+- `editRow`: A state variable that keeps track of the ID of the customer being edited. When this variable is not `null`, it indicates that the form should be used for updating the customer instead of adding a new one.
+
+- `openform`: A boolean state variable that controls the visibility of the form. When `openform` is `true`, the form is displayed, and when it's `false`, the form is hidden.
+
+## Functionality
+
+1. **Fetching Customers**: The `useEffect` hook is used to fetch the list of customers from the backend API when the component mounts. The fetched customers are stored in the `customers` state.
+
+2. **Adding a Customer**: When the user submits the form to add a new customer, the `addCustomer` function is called. It makes a POST request to the backend API to add the new customer. If the request is successful, the newly added customer is added to the `customers` state, and it appears in the table.
+
+3. **Updating a Customer**: When the user clicks the edit button in the table, the `handleEdit` function is called, which sets the `editRow` state to the ID of the customer being edited. This opens the form in edit mode. When the user submits the form after making changes, the `updateCustomer` function is called. It makes a PUT request to the backend API to update the customer's information. If the request is successful, the updated customer's information is reflected in the table.
+
+4. **Deleting a Customer**: When the user clicks the delete button in the table, the `deleteCustomer` function is called with the ID of the customer to be deleted. It makes a DELETE request to the backend API to remove the customer from the database. If the request is successful, the customer is removed from the `customers` state, and it disappears from the table.
+
+5. **Form Submission**: The `handleSubmit` function is called when the user submits the form. If `editRow` is `null`, it means a new customer is being added, and the `addCustomer` function is called. Otherwise, it means an existing customer is being updated, and the `updateCustomer` function is called.
+
+6. **Form Visibility**: The `openform` state controls the visibility of the form. When the "ADD" button is clicked, it sets `openform` to `true`, which displays the form. When the form is closed (either after adding or updating a customer), it sets `openform` to `false`, which hides the form.
+
+## Conclusion
+
+The React Customer Management App provides an easy-to-use interface for managing customer information. Users can view, add, update, and delete customer records through a simple and intuitive web application. The application communicates with the backend API to perform these operations and ensures that customer data is synced with the server. With its user-friendly interface and efficient data management, the React Customer Management App is a powerful tool for businesses to keep track of their customers effectively. however more focus can be drawn to proficient error handeling that makes a point of clarifying the exact problem and some focus must be directed to security especialy when handeling ID's. 

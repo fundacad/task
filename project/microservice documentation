@@ -1,0 +1,48 @@
+# Mobile Number Validation Microservice Documentation
+
+The Mobile Number Validation Microservice is a part of the larger application and serves the purpose of validating mobile numbers using an external API. This microservice is responsible for checking if a given mobile number is valid and obtaining additional information about the number, such as the country code, country name, and the mobile operator.
+
+## Base URL
+
+will acompany the Backend API's upon deployment 
+
+## Endpoint
+
+### 1. Validate Mobile Number
+
+- **URL:** `/validate-mobile-number`
+- **Method:** `POST`
+- **Description:** Validate a mobile number and retrieve additional information about the number, such as the country code, country name, and mobile operator.
+- **Request Body:**
+  ```json
+  {
+    "mobileNum": "Customer Mobile Number"
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "countryCode": "Country Code",
+    "countryName": "Country Name",
+    "operatorName": "Mobile Operator Name"
+  }
+  ```
+- **Status Codes:**
+  - `200 OK` - The request was successful, and the mobile number is valid.
+  - `400 Bad Request` - Invalid input or missing data.
+
+## Error Handling
+
+If an error occurs during the mobile number validation process, the response will include an error message along with the appropriate HTTP status code.
+
+Possible error status codes:
+
+- `400 Bad Request` - Invalid input or missing data.
+
+## External API
+
+The Mobile Number Validation Microservice uses the [Numverify](https://numverify.com) API to perform the actual validation of mobile numbers. The API key used for accessing the Numverify API is `cd74fe9cc7b308039005a07c6d2e8538`. The microservice sends a request to the Numverify API with the provided mobile number to determine its validity and retrieve additional information about the number.
+
+## Conclusion
+
+The Mobile Number Validation Microservice plays a crucial role in ensuring that the mobile numbers provided by users are valid and can be used for further processing in the application. It communicates with the external Numverify API to obtain accurate and up-to-date information about mobile numbers, such as their country code, country name, and mobile operator. This microservice enables the larger application to offer a more streamlined and reliable customer experience by ensuring that the provided mobile numbers are accurate and valid.

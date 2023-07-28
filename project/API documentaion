@@ -1,0 +1,127 @@
+# Customer Management API Documentation
+
+The Customer Management API provides endpoints to manage customer information, allowing you to perform operations like adding, retrieving, updating, and deleting customer records. This documentation outlines the available endpoints, request and response formats, and error handling.
+
+## Base URL
+
+these API's are not yet deployed
+
+## Endpoints
+
+### 1. Add a New Customer
+
+- **URL:** `/add`
+- **Method:** `POST`
+- **Description:** Add a new customer to the database.
+- **Request Body:**
+  ```json
+  {
+    "name": "Customer Name",
+    "address": "Customer Address",
+    "mobileNum": "Customer Mobile Number"
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "id": "customer_id",
+    "name": "Customer Name",
+    "address": "Customer Address",
+    "mobileNum": "Customer Mobile Number"
+  }
+  ```
+- **Status Codes:**
+  - `201 Created` - The customer was added successfully.
+  - `400 Bad Request` - Invalid input or missing data.
+
+### 2. Get All Customers
+
+- **URL:** `/get-all`
+- **Method:** `GET`
+- **Description:** Get a list of all customers in the database.
+- **Response:**
+  ```json
+  [
+    {
+      "id": "customer_id",
+      "name": "Customer Name",
+      "address": "Customer Address",
+      "mobileNum": "Customer Mobile Number"
+    },
+    {
+      "id": "customer_id2",
+      "name": "Customer Name 2",
+      "address": "Customer Address 2",
+      "mobileNum": "Customer Mobile Number 2"
+    },
+    ...
+  ]
+  ```
+- **Status Codes:**
+  - `200 OK` - The request was successful.
+  - `500 Internal Server Error` - Unable to retrieve customers.
+
+
+### 3. Update Customer Information
+
+- **URL:** `/update/:id`
+- **Method:** `PUT`
+- **Description:** Update the information of a specific customer in the database using the customer's ID.
+- **Request Body:** Include the fields you want to update, and the corresponding new values.
+  ```json
+  {
+    "name": "New Name",
+    "address": "New Address",
+    "mobileNum": "New Mobile Number"
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "id": "customer_id",
+    "name": "New Name",
+    "address": "New Address",
+    "mobileNum": "New Mobile Number"
+  }
+  ```
+- **Status Codes:**
+  - `200 OK` - The customer was updated successfully.
+  - `404 Not Found` - Customer with the given ID was not found.
+  - `400 Bad Request` - Invalid input or missing data.
+
+### 4. Delete Customer by ID
+
+- **URL:** `/delete/:id`
+- **Method:** `DELETE`
+- **Description:** Delete a customer from the database by their unique ID.
+- **Response:**
+  ```json
+  {
+    "message": "Customer deleted successfully"
+  }
+  ```
+- **Status Codes:**
+  - `200 OK` - The customer was deleted successfully.
+  - `400 Bad Request` - Unable to delete customer.
+
+## Error Handling
+
+If an error occurs during an API request, the response will include an error message along with the appropriate HTTP status code.
+
+Possible error status codes:
+
+- `400 Bad Request` - Invalid input or missing data.
+- `404 Not Found` - The requested resource was not found.
+- `500 Internal Server Error` - An unexpected error occurred on the server.
+
+## Authentication (possible improvement)
+
+The Customer Management API does not currently require authentication. However, if necessary, authentication mechanisms such as JWT or API keys can be implemented to secure certain endpoints.
+
+## Rate Limiting (possible improvement)
+
+To prevent abuse and ensure fair usage, the API might implement rate limiting. This means that a user can only make a certain number of requests per time interval. The rate limit information will be provided in the response headers.
+
+## Conclusion
+
+The Customer Management API simplifies the process of managing customer data by providing straightforward endpoints to add, retrieve, update, and delete customer records. It enables developers to build robust applications that can handle customer information efficiently and securely. As the application evolves, additional features and security measures can be added to enhance its functionality and reliability.Given more time we could have greater focus on error handeling and relaying to the user more precise messages.security is another topic were we could discus improvments like better cors config and Authentication and Authorization
